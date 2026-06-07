@@ -2,11 +2,12 @@ package handlers
 
 import (
 	"encoding/json"
+	"net/http"
+	"strconv"
+
 	"go-vanillajs/data"
 	"go-vanillajs/logger"
 	"go-vanillajs/models"
-	"net/http"
-	"strconv"
 )
 
 type MovieHandler struct {

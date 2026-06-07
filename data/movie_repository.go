@@ -3,9 +3,10 @@ package data
 import (
 	"database/sql"
 	"errors"
+	"strconv"
+
 	"go-vanillajs/logger"
 	"go-vanillajs/models"
-	"strconv"
 
 	_ "github.com/lib/pq"
 )
@@ -15,6 +16,7 @@ type MovieRepository struct {
 	logger *logger.Logger
 }
 
+// Factory
 func NewMovieRepository(db *sql.DB, log *logger.Logger) (*MovieRepository, error) {
 	return &MovieRepository{
 		db:     db,
@@ -38,14 +40,14 @@ func (r *MovieRepository) GetTopMovies() ([]models.Movie, error) {
 
 func (r *MovieRepository) GetRandomMovies() ([]models.Movie, error) {
 	// Fetch movies
-	randomQuery := `
+	query := `
 		SELECT id, tmdb_id, title, tagline, release_year, overview, score, 
 		       popularity, language, poster_url, trailer_url
 		FROM movies
-		ORDER BY random()
+		ORDER BY random() DESC
 		LIMIT $1
 	`
-	return r.getMovies(randomQuery)
+	return r.getMovies(query)
 }
 
 func (r *MovieRepository) getMovies(query string) ([]models.Movie, error) {
