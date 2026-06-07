@@ -1,5 +1,6 @@
 package main
 
+// This is very tricky but very important
 import (
 	"database/sql"
 	"fmt"
@@ -10,7 +11,6 @@ import (
 	"net/http"
 	"os"
 
-	// This is very tricky but very important
 	_ "github.com/lib/pq"
 
 	"github.com/joho/godotenv"
@@ -45,7 +45,7 @@ func main() {
 		log.Fatal("DATABASE_URL not set")
 	}
 
-	db, err := sql.Open("postres", dbConnStr)
+	db, err := sql.Open("postgres", dbConnStr)
 	if err != nil {
 		log.Fatalf("failed to connect to the database: %v", err)
 	}
