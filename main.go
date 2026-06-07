@@ -20,7 +20,7 @@ func initializeLogger() *logger.Logger {
 	logInstance, err := logger.NewLogger("movie.log")
 	// logInstance.Error("Hello from the Error system", nil)
 	if err != nil {
-		log.Fatalf("Failed to initialice logger $v", err)
+		log.Fatalf("Failed to initialice logger %v", err)
 	}
 	return logInstance
 }
